@@ -1,1 +1,6 @@
-<p>login works!</p>
+<div>
+    <input type="text" placeholder="请输入用户名" #usernameRef>
+    <input type="password" placeholder="请输入密码" #passwordRef>
+    <button type="button" (click)="onClick(usernameRef.value, passwordRef.value)">登录</button>
+
+</div>
