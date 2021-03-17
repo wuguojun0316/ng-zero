@@ -1,6 +1,18 @@
 <div>
-    <input type="text" placeholder="请输入用户名" #usernameRef>
-    <input type="password" placeholder="请输入密码" #passwordRef>
-    <button type="button" (click)="onClick(usernameRef.value, passwordRef.value)">登录</button>
-
+    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef)">
+        <fieldset ngModelGroup="login">
+            <input type="text" placeholder="请输入用户名" name="username" [(ngModel)]="username" #usernameRef="ngModel" required minlength="3">
+            {{usernameRef.errors | json}}
+            <div *ngIf="usernameRef.errors?.required" style="color:red">*用户名为必填项</div>
+            <div *ngIf="usernameRef.errors?.minlength" style="color:red">*用户名长度至少为3</div>
+            <br/>
+            <input type="password" placeholder="请输入密码" name="password" [(ngModel)]="password" #passwordRef="ngModel" required minlength="6">
+                {{passwordRef.errors | json}}
+            <div *ngIf="passwordRef.errors?.required" style="color:red">*密码是必填项</div>
+            <br/>
+            <!-- <button type="button" (click)="onClick(username, password)">登录</button> -->
+            <button type="submit">提交</button>
+        </fieldset>
+        
+    </form>
 </div>

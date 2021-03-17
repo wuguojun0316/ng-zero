@@ -10,14 +10,22 @@ import { AuthService } from '../core/auth.service';
 export class LoginComponent implements OnInit {
   text:string = 'Hello LoginComponent';
 
+  username: string = "";
+  password: string = "";
+
   constructor(@Inject('auth') private loginService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   onClick(username: string, password: string) {
-    this.loginService.loginWithCredentials(username, password);
-    console.log('username:' + username + '\n\r' + 'password:' + password);
+    this.loginService.loginWithCredentials(this.username, this.password);
+    console.log('username:' + this.username + '\n\r' + 'password:' + this.password);
+  }
+
+  onSubmit(formValue: any) {
+    this.loginService.loginWithCredentials(formValue.value.login.username, formValue.value.login.password);
+    console.log(formValue);
   }
 
 }
