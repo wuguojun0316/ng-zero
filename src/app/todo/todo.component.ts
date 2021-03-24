@@ -11,7 +11,7 @@ import { TodoService } from './todo.service';
 })
 export class TodoComponent implements OnInit {
 
-  todoModle: TodoModel[] = [];
+  todos: TodoModel[] = [];
   desc = '';
 
   constructor(private service: TodoService) { }
@@ -19,9 +19,24 @@ export class TodoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addTodoModel() {
-    this.todoModle = this.service.addTodo(this.desc);
+  addTodo() {
+    this.service.addTodo(this.desc).then((todo: TodoModel[]) => {
+      this.todos = [...this.todos, ...todo];
+      console.log(this.todos);
+    });
     this.desc = '';
+    
+  }
+
+  toggleTodo(todo: TodoModel) {
+
+  }
+
+  removeTodo(todo: TodoModel) {
+
+  }
+
+  getTodos(): void {
     
   }
 

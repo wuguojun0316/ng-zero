@@ -5,16 +5,17 @@ export class InMemoryTodoDbService implements InMemoryDbService {
     createDb() {
         let todos: TodoModel[] = [
             {
-                id:"f3e899de-7c30-9f85-c4e0-392f47032ce1",
+                id: 100,
                 desc: 'JavaScript',
                 completed: true
             },
             {
-                id:"4fec99b0-d4a5-fdfb-9dbc-c8d2098e78c5",
+                id: 110,
                 desc: 'Golang',
                 completed: false
             }
         ];
+        console.log({todos});
         return {todos};
     }
 }

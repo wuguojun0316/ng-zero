@@ -3,6 +3,7 @@ import { TodoModel } from './todo.model';
 import { UUID } from 'angular2-uuid';
 import { HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,23 +18,23 @@ export class TodoService {
     
   }
 
-  addTodo(todoItem: string): TodoModel[] {
+  addTodo(todoItem: string): Promise<TodoModel[]> {
     let todo = {
-      id: UUID.UUID(),
+      id: 1,
       desc: todoItem,
       completed: false
     };
-    this.httpClient.get(this.api_url, { headers: this.headers, params: {parma: JSON.stringify(todo)}, responseType: 'json'})
+    //return this.httpClient.post(this.api_url, { headers: this.headers, params: {parma: JSON.stringify(todo)},  responseType: 'json'})
+    return this.httpClient.get(this.api_url, { headers: this.headers})
                    .toPromise()
                    .then((res:any) => {
                       console.log(res);
-                      return res.json().data as TodoModel;
+                      return res as TodoModel[];
                    })
                    .catch(this.handleError);
 
-    console.log(todo.id);
-    this.todoModel.push(todo);
-    return this.todoModel;
+    // this.todoModel.push(todo);
+    // return this.todoModel;
   }
 
   private handleError(error: any): Promise<any> {

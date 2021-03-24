@@ -8,7 +8,7 @@ import { AuthService } from './core/auth.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TodoComponent } from './todo/todo.component';
-import {  InMemoryDbService, InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HttpClientInMemoryWebApiModule, InMemoryDbService, InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryTodoDbService } from './todo/todo-data';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -23,8 +23,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    //HttpClientInMemoryWebApiModule.forRoot(InMemoryTodoDbService, {dataEncapsulation: false})
-    InMemoryWebApiModule.forRoot(InMemoryTodoDbService)
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryTodoDbService, {dataEncapsulation: false})
+    //InMemoryWebApiModule.forRoot(InMemoryTodoDbService)
   ],
   providers: [
     {provide: 'auth', useClass: AuthService}
